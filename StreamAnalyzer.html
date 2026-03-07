@@ -83,8 +83,8 @@
 			</div>
 			
 			<div class = "HalfSplit">
-				<textarea class = "NormalText" id = "Input_priori"></textarea>
-				<textarea class = "NormalText" id = "Input_new"></textarea>
+				<textarea class = "NormalText" id = "InputPriori"></textarea>
+				<textarea class = "NormalText" id = "InputNew"></textarea>
 			</div>
 			
 			<div>
@@ -92,7 +92,7 @@
 			</div>
 			
 			<div>
-				<textarea class = "NormalText" id = "Output_area"></textarea>
+				<textarea class = "NormalText" id = "OutputArea"></textarea>
 			</div>
 			
 		</div>
@@ -101,54 +101,54 @@
 			
 			let State =
 			{
-				"P_priori" 	: 	{},
-				"Events_new"		:	[],
+				"PPriori" 	: 	{},
+				"EventsNew"		:	[],
 			}
 			
-			function StateFunctionLoad( Priori_stream, New_stream )
+			function StateFunctionLoad( PrioriStream, NewStream )
 			{
-				State[ "P_priori" ] = {};
-				State[ "Events_new" ] = [];
+				State[ "PPriori" ] = {};
+				State[ "EventsNew" ] = [];
 				
-				let Events = Priori_stream.split(/\s+/);
+				let Events = PrioriStream.split(/\s+/);
 				Events.forEach( Event => 
 				{ 
 					if( Event.length > 0 && Event != " " && Event != "\n" )
 					{
-						State[ "P_priori" ][ Event ] = ( State[ "P_priori" ][ Event ] || 0 ) + 1;
+						State[ "PPriori" ][ Event ] = ( State[ "PPriori" ][ Event ] || 0 ) + 1;
 					} 
 				} );
 				
-				Events = New_stream.split(/\s+/);
+				Events = NewStream.split(/\s+/);
 				Events.forEach( Event => 
 				{ 
 					if( Event.length > 0 && Event != " " && Event != "\n" )
 					{
-						State[ "Events_new" ].push( Event );
+						State[ "EventsNew" ].push( Event );
 					} 
 				} );
 				
 				let Norm = 0;
-				for( Event in State[ "P_priori" ] ){ Norm += State[ "P_priori" ][ Event ]; } 
-				for( Event in State[ "P_priori" ] ){ State[ "P_priori" ][ Event ] /= Norm; } 
+				for( Event in State[ "PPriori" ] ){ Norm += State[ "PPriori" ][ Event ]; } 
+				for( Event in State[ "PPriori" ] ){ State[ "PPriori" ][ Event ] /= Norm; } 
 			}
 			
 			function OutputFunctionRender()
 			{
-				let P_post = 1;
-				for ( let Event of State[ "Events_new" ] ){ P_post *= State[ "P_priori" ][ Event ]; }
+				let PPost = 1;
+				for ( let Event of State[ "EventsNew" ] ){ PPost *= State[ "PPriori" ][ Event ]; }
 				
-				let I_post = - Math.log2( P_post );
+				let IPost = - Math.log2( PPost );
 				
-				document.getElementById( "Output_area" ).value += 
-					State[ "Events_new" ].join( " " ) + ": " + I_post.toFixed( 3 ) + " [ bit ]\n";
+				document.getElementById( "OutputArea" ).value += 
+					State[ "EventsNew" ].join( " " ) + ": " + IPost.toFixed( 3 ) + " [ bit ]\n";
 				
 			}
 			
 			function ButtonCallback()
 			{
-				StateFunctionLoad(  document.getElementById( "Input_priori" ).value,
-									document.getElementById( "Input_new" ).value );
+				StateFunctionLoad(  document.getElementById( "InputPriori" ).value,
+									document.getElementById( "InputNew" ).value );
 				OutputFunctionRender();
 			}
 			
