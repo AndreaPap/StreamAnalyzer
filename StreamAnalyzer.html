@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Stream analyzer</title>
+
+        <style>
+            html, body 
+            {
+                margin: 0;
+                height: 100%;
+            }
+
+            .MasterLayout
+            {
+                display: grid;
+                grid-template-columns: 100%;
+                grid-template-rows: 5% 30% 5% 60%;
+                box-sizing: border-box;
+                height: 100%;
+                width: 100%;
+            }
+            
+            .HalfSplit
+            {
+            	display: grid;
+                grid-template-columns: 50% 50%;
+                grid-template-rows: 100%;
+                box-sizing: border-box;
+                height: 100%;
+                width: 100%;
+            }
+            
+            .NormalText 
+            {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #333;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+                font-size: 1.2em;
+                width: 100%;
+                height: 100%;                    
+            }
+
+            .BigText
+            {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #333;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+                font-size: 1.7em;
+                width: 100%;
+                height: 100%;                    
+            }
+
+            .Button
+            {
+                border: 1px solid #333;
+                font-family: Arial, sans-serif;
+                font-size: 1.2em;
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;                    
+            }
+			
+		</style>
+		
+	</head>
+	
+	<body>
+	
+		<div class = "MasterLayout">
+		
+			<div class = "HalfSplit">
+				<div class="BigText">PRIORI STREAM</div>
+				<div class="BigText">NEW STREAM</div>
+			</div>
+			
+			<div class = "HalfSplit">
+				<textarea class = "NormalText" id = "Input_priori"></textarea>
+				<textarea class = "NormalText" id = "Input_new"></textarea>
+			</div>
+			
+			<div>
+				<button class = "Button" onclick="ButtonCallback()">EVALUATE</button>
+			</div>
+			
+			<div>
+				<textarea class = "NormalText" id = "Output_area"></textarea>
+			</div>
+			
+		</div>
+		
+		<script>
+			
+			let State =
+			{
+				"P_priori" 	: 	{},
+				"Events_new"		:	[],
+			}
+			
+			function StateFunctionLoad( Priori_stream, New_stream )
+			{
+				State[ "P_priori" ] = {};
+				State[ "Events_new" ] = [];
+				
+				let Events = Priori_stream.split(/\s+/);
+				Events.forEach( Event => 
+				{ 
+					if( Event.length > 0 && Event != " " && Event != "\n" )
+					{
+						State[ "P_priori" ][ Event ] = ( State[ "P_priori" ][ Event ] || 0 ) + 1;
+					} 
+				} );
+				
+				Events = New_stream.split(/\s+/);
+				Events.forEach( Event => 
+				{ 
+					if( Event.length > 0 && Event != " " && Event != "\n" )
+					{
+						State[ "Events_new" ].push( Event );
+					} 
+				} );
+				
+				let Norm = 0;
+				for( Event in State[ "P_priori" ] ){ Norm += State[ "P_priori" ][ Event ]; } 
+				for( Event in State[ "P_priori" ] ){ State[ "P_priori" ][ Event ] /= Norm; } 
+			}
+			
+			function OutputFunctionRender()
+			{
+				let P_post = 1;
+				for ( let Event of State[ "Events_new" ] ){ P_post *= State[ "P_priori" ][ Event ]; }
+				
+				let I_post = - Math.log2( P_post );
+				
+				document.getElementById( "Output_area" ).value += 
+					State[ "Events_new" ].join( " " ) + ": " + I_post.toFixed( 3 ) + " [ bit ]\n";
+				
+			}
+			
+			function ButtonCallback()
+			{
+				StateFunctionLoad(  document.getElementById( "Input_priori" ).value,
+									document.getElementById( "Input_new" ).value );
+				OutputFunctionRender();
+			}
+			
+		</script>
+		
+    </body>
+    
+
+    
+</html>
