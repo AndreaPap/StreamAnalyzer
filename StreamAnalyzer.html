@@ -158,14 +158,14 @@
 					let IPost = - Math.log2( PPost );
 					
 					document.getElementById( "OutputInfoStream" ).value += 
-						FixConcat( FixConcat( State[ "EventsNew" ].join( " " ) + ":", IPost.toFixed( 3 ), 15 ), "[ bit ]\n", 25 );
+						FixConcat( FixConcat( State[ "EventsNew" ].join( " " ) + ":", IPost.toFixed( 3 ), 10 ), "[ bit ]\n", 20 );
 				}
 					
 				document.getElementById( "OutputInfoEvent" ).value = "";
 				for ( let Event in State[ "PPriori" ] )
 				{
 					document.getElementById( "OutputInfoEvent" ).value += 
-						FixConcat( FixConcat( Event + ":", - Math.log2( State[ "PPriori" ][ Event ] ).toFixed( 3 ), 15 ), "[ bit ]\n", 25 );	
+						FixConcat( FixConcat( Event + ":", - Math.log2( State[ "PPriori" ][ Event ] ).toFixed( 3 ), 10 ), "[ bit ]\n", 20 );	
 				}
 				
 			}
