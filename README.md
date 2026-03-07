@@ -1,6 +1,7 @@
 Simple stream analyzer.
 
 Its purpose is to calculate the information carried by the new stream with respect to prior knowledge: I[ New | Priori ] .
+
 This is done by calculating:
 -log2( P( New | Priori ) ), where P( New | Priori ) is assumed to be equal to Prod_i ( P_priori_i( New_i ) ).
 
