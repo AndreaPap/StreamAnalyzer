@@ -5,55 +5,6 @@ class System
 
     }
 
-    EventEvaluate()
-    {
-        let PrioriP = this.EventStream2P( "PrioriStream" );
-
-        document.getElementById( "OutputSingle" ).value = "";
-        for( let Event in PrioriP )
-        {
-            document.getElementById( "OutputSingle" ).value +=
-                Event + ": " + -Math.log2( PrioriP[ Event ] ).toFixed( 3 ) + " [bit]\t";
-        }
-
-        if( document.getElementById( "Stream" ).value != "" )
-        {
-            document.getElementById( "OutputStream" ).value += document.getElementById( "Stream" ).value.toLowerCase() + ": " +
-                -Math.log2( this.EventMeasureStream( PrioriP, "Stream" ) ).toFixed( 3 ) + " [bit]\t";
-
-            document.getElementById( "Stream" ).value = "";
-        }
-
-        document.getElementById( "PrioriStream" ).readOnly = true;
-        document.getElementById( "PrioriStream" ).style.backgroundColor = "palegreen";
-        document.getElementById( "PrioriStream" ).style.color = "firebrick";
-        
-    }
-
-    EventStream2P( TextAreaStream )
-    {
-        let P = {};
-        Stream = document.getElementById( TextAreaStream ).value.toLowerCase().match(/\b[\wàèéìòù]+\b/g) || [];
-        let Norm = Stream.length;
-
-        for( let Event of Stream )
-        {
-            P[ Event ] = ( P[ Event ] || 0 ) + ( 1 / Norm );
-        } 
-        return P;
-    }
-
-    EventMeasureStream( P, TextAreaStream )
-    {
-        let TotP = 1;
-        Stream = document.getElementById( TextAreaStream ).value.toLowerCase().match(/\b[\wàèéìòù]+\b/g) || [];
-        for( let Event of Stream )
-        {
-            TotP *= P[ Event ];
-        } 
-        return TotP;
-    }
-
     EventInit()
     {
         let Element;
@@ -123,6 +74,56 @@ class System
         Element.textContent = "Reset";
         Element.onclick = () => this.EventInit();
         App.append( Element );
+    }
+
+    EventEvaluate()
+    {
+        alert( "click" );
+        let PrioriP = this.EventStream2P( "PrioriStream" );
+
+        document.getElementById( "OutputSingle" ).value = "";
+        for( let Event in PrioriP )
+        {
+            document.getElementById( "OutputSingle" ).value +=
+                Event + ": " + -Math.log2( PrioriP[ Event ] ).toFixed( 3 ) + " [bit]\t";
+        }
+
+        if( document.getElementById( "Stream" ).value != "" )
+        {
+            document.getElementById( "OutputStream" ).value += document.getElementById( "Stream" ).value.toLowerCase() + ": " +
+                -Math.log2( this.EventMeasureStream( PrioriP, "Stream" ) ).toFixed( 3 ) + " [bit]\t";
+
+            document.getElementById( "Stream" ).value = "";
+        }
+
+        document.getElementById( "PrioriStream" ).readOnly = true;
+        document.getElementById( "PrioriStream" ).style.backgroundColor = "palegreen";
+        document.getElementById( "PrioriStream" ).style.color = "firebrick";
+        
+    }
+
+    EventStream2P( TextAreaStream )
+    {
+        let P = {};
+        Stream = document.getElementById( TextAreaStream ).value.toLowerCase().match(/\b[\wàèéìòù]+\b/g) || [];
+        let Norm = Stream.length;
+
+        for( let Event of Stream )
+        {
+            P[ Event ] = ( P[ Event ] || 0 ) + ( 1 / Norm );
+        } 
+        return P;
+    }
+
+    EventMeasureStream( P, TextAreaStream )
+    {
+        let TotP = 1;
+        Stream = document.getElementById( TextAreaStream ).value.toLowerCase().match(/\b[\wàèéìòù]+\b/g) || [];
+        for( let Event of Stream )
+        {
+            TotP *= P[ Event ];
+        } 
+        return TotP;
     }
 }
 
