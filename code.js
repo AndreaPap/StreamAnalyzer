@@ -5,77 +5,6 @@ class System
 
     }
 
-    EventInit()
-    {
-        let Element;
-        let App = document.getElementById( "App" );
-        App.innerHTML = "";
-        App.className = "AppStyle";
-
-        Element = document.createElement( "span" );
-        Element.className = "HeaderStyle";
-        Element.textContent = "Priori stream";
-        App.append( Element );
-
-        Element = document.createElement( "span" );
-        Element.className = "HeaderStyle";
-        Element.textContent = "Stream";
-        App.append( Element );
-
-        Element = document.createElement( "textarea" );
-        Element.id = "PrioriStream";
-        Element.className = "CellStyle";
-        App.append( Element );
-
-        Element = document.createElement( "textarea" );
-        Element.id = "Stream";
-        Element.className = "CellStyle";
-        /*Element.addEventListener( "keydown", 
-            ( event ) => 
-            {
-                if (event.key === "Enter") 
-                {
-                    event.preventDefault(); // evita newline nella textarea
-                    document.getElementById( "EvaluateButton")
-                }
-            }
-        );*/
-        App.append( Element );
-
-        Element = document.createElement( "span" );
-        Element.className = "HeaderStyle";
-        Element.textContent = "Event info";
-        App.append( Element );
-
-        Element = document.createElement( "span" );
-        Element.className = "HeaderStyle";
-        Element.textContent = "Stream info";
-        App.append( Element );
-
-        Element = document.createElement( "textarea" );
-        Element.id = "OutputSingle";
-        Element.className = "CellStyle";
-        App.append( Element );
-
-        Element = document.createElement( "textarea" );
-        Element.id = "OutputStream";
-        Element.className = "CellStyle";
-        App.append( Element );
-
-        Element = document.createElement( "button" );
-        Element.id = "EvaluateButton";
-        Element.className = "ButtonStyle";
-        Element.textContent = "Evaluate";
-        Element.onclick = () => this.EventEvaluate();
-        App.append( Element );
-
-        Element = document.createElement( "button" );
-        Element.className = "ButtonStyle";
-        Element.textContent = "Reset";
-        Element.onclick = () => this.EventInit();
-        App.append( Element );
-    }
-
     EventEvaluate()
     {
         let PrioriP = this.EventStream2P( "PrioriStream" );
@@ -123,6 +52,77 @@ class System
             TotP *= P[ Event ];
         } 
         return TotP;
+    }
+
+    EventInit()
+    {
+        let Element;
+        let App = document.getElementById( "App" );
+        App.innerHTML = "";
+        App.className = "AppStyle";
+
+        Element = document.createElement( "span" );
+        Element.className = "HeaderStyle";
+        Element.textContent = "Priori stream";
+        App.append( Element );
+
+        Element = document.createElement( "span" );
+        Element.className = "HeaderStyle";
+        Element.textContent = "Stream";
+        App.append( Element );
+
+        Element = document.createElement( "textarea" );
+        Element.id = "PrioriStream";
+        Element.className = "CellStyle";
+        App.append( Element );
+
+        Element = document.createElement( "textarea" );
+        Element.id = "Stream";
+        Element.className = "CellStyle";
+        Element.addEventListener( "keydown", 
+            ( event ) => 
+            {
+                if (event.key === "Enter") 
+                {
+                    event.preventDefault(); // evita newline nella textarea
+                    this.EventEvaluate();
+                }
+            }
+        );
+        App.append( Element );
+
+        Element = document.createElement( "span" );
+        Element.className = "HeaderStyle";
+        Element.textContent = "Event info";
+        App.append( Element );
+
+        Element = document.createElement( "span" );
+        Element.className = "HeaderStyle";
+        Element.textContent = "Stream info";
+        App.append( Element );
+
+        Element = document.createElement( "textarea" );
+        Element.id = "OutputSingle";
+        Element.className = "CellStyle";
+        App.append( Element );
+
+        Element = document.createElement( "textarea" );
+        Element.id = "OutputStream";
+        Element.className = "CellStyle";
+        App.append( Element );
+
+        Element = document.createElement( "button" );
+        Element.id = "EvaluateButton";
+        Element.className = "ButtonStyle";
+        Element.textContent = "Evaluate";
+        Element.onclick = () => this.EventEvaluate();
+        App.append( Element );
+
+        Element = document.createElement( "button" );
+        Element.className = "ButtonStyle";
+        Element.textContent = "Reset";
+        Element.onclick = () => this.EventInit();
+        App.append( Element );
     }
 }
 
