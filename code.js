@@ -36,7 +36,7 @@ class System
                 if (event.key === "Enter") 
                 {
                     event.preventDefault(); // evita newline nella textarea
-                    this.EventEvaluate();
+                    PageSystem.EventEvaluate();
                 }
             }
         );
