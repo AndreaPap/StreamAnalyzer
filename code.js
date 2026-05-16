@@ -1,3 +1,5 @@
+"use strict";
+
 class System
 {
     constructor()
@@ -84,13 +86,13 @@ class System
         for( let Event in PrioriP )
         {
             document.getElementById( "OutputSingle" ).value +=
-                Event + ": " + -Math.log2( PrioriP[ Event ] ).toFixed( 3 ) + " [bit]\t";
+                Event + ": " + ( - Math.log2( PrioriP[ Event ] ) ).toFixed( 3 ) + " [bit]\t";
         }
 
         if( document.getElementById( "Stream" ).value != "" )
         {
             document.getElementById( "OutputStream" ).value += document.getElementById( "Stream" ).value.toLowerCase() + ": " +
-                -Math.log2( this.EventMeasureStream( PrioriP, "Stream" ) ).toFixed( 3 ) + " [bit]\t";
+                ( - Math.log2( this.EventMeasureStream( PrioriP, "Stream" ) ) ).toFixed( 3 ) + " [bit]\t";
 
             document.getElementById( "Stream" ).value = "";
         }
