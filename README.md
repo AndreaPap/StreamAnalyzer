@@ -9,7 +9,6 @@ Where P( New | Prior ) is assumed to be equal to Prod_i ( P_prior_i( New_i ) ).
 
 An example of use for evaluate chord's surprise:
 
-<img width="1916" height="939" alt="immagine" src="https://github.com/user-attachments/assets/b0e63fcd-d796-4751-898c-0949bca9fb22" />
-
+<img width="1916" height="937" alt="immagine" src="https://github.com/user-attachments/assets/3c2411c6-fbf9-4298-bd71-28684f190a83" />
 
 In left side complete stream, in right sub stream to evaluate. Press evaluate or Enter in extarea and script will calculate Info. :-)
