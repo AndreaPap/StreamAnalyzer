@@ -103,24 +103,21 @@ class System
 
     EventStream2P( TextAreaStream )
     {
-        alert( "P0" );
         let P = {};
-        Stream = document.getElementById( TextAreaStream ).value.toLowerCase().trim().split(/\s+/);
-        alert( "P1" );
+        let Stream = document.getElementById( TextAreaStream ).value.toLowerCase().trim().split(/\s+/);
         let Norm = Stream.length;
 
         for( let Event of Stream )
         {
             P[ Event ] = ( P[ Event ] || 0 ) + ( 1 / Norm );
         } 
-        alert( "P2" );
         return P;
     }
 
     EventMeasureStream( P, TextAreaStream )
     {
         let TotP = 1;
-        Stream = document.getElementById( TextAreaStream ).value.toLowerCase().trim().split(/\s+/);
+        let Stream = document.getElementById( TextAreaStream ).value.toLowerCase().trim().split(/\s+/);
         for( let Event of Stream )
         {
             TotP *= P[ Event ];
