@@ -31,11 +31,12 @@ class System
         Element.id = "Stream";
         Element.className = "CellStyle";
         Element.addEventListener( "keydown", 
-            function(event) {
+            ( event ) => 
+            {
                 if (event.key === "Enter") 
                 {
                     event.preventDefault(); // evita newline nella textarea
-                    document.getElementById( "EvaluateButton" ).click();
+                    this.EventEvaluate();
                 }
             }
         );
@@ -77,7 +78,6 @@ class System
 
     EventEvaluate()
     {
-        alert( "ciao" );
         let PrioriP = this.EventStream2P( "PrioriStream" );
 
         document.getElementById( "OutputSingle" ).value = "";
