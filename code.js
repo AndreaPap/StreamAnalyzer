@@ -79,7 +79,7 @@ class System
     EventEvaluate()
     {
         let PrioriP = this.EventStream2P( "PrioriStream" );
-        
+
         document.getElementById( "OutputSingle" ).value = "";
         for( let Event in PrioriP )
         {
@@ -103,14 +103,17 @@ class System
 
     EventStream2P( TextAreaStream )
     {
+        alert( "P0" );
         let P = {};
         Stream = document.getElementById( TextAreaStream ).value.toLowerCase().trim().split(/\s+/);
+        alert( "P1" );
         let Norm = Stream.length;
 
         for( let Event of Stream )
         {
             P[ Event ] = ( P[ Event ] || 0 ) + ( 1 / Norm );
         } 
+        alert( "P2" );
         return P;
     }
 
