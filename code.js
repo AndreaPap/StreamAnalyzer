@@ -36,7 +36,7 @@ class System
                 if (event.key === "Enter") 
                 {
                     event.preventDefault(); // evita newline nella textarea
-                    PageSystem.EventEvaluate();
+                    this.EventEvaluate();
                 }
             }
         );
@@ -66,13 +66,13 @@ class System
         Element.id = "EvaluateButton";
         Element.className = "ButtonStyle";
         Element.textContent = "Evaluate";
-        Element.onclick = () => PageSystem.EventEvaluate();
+        Element.onclick = () => this.EventEvaluate();
         App.append( Element );
 
         Element = document.createElement( "button" );
         Element.className = "ButtonStyle";
         Element.textContent = "Reset";
-        Element.onclick = () => PageSystem.EventInit();
+        Element.onclick = () => this.EventInit();
         App.append( Element );
     }
 
