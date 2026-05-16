@@ -80,15 +80,15 @@ class System
         let PrioriP = this.EventStream2P( "PrioriStream" );
 
         document.getElementById( "OutputSingle" ).value = "";
-        for( let Token in PrioriP )
+        for( let Event in PrioriP )
         {
             document.getElementById( "OutputSingle" ).value +=
-                Token + ": " + -Math.log2( PrioriP[ Token ] ).toFixed( 3 ) + " [bit]\t";
+                Event + ": " + -Math.log2( PrioriP[ Event ] ).toFixed( 3 ) + " [bit]\t";
         }
 
         if( document.getElementById( "Stream" ).value != "" )
         {
-            document.getElementById( "OutputStream" ).value += document.getElementById( "Stream" ).value + ": " +
+            document.getElementById( "OutputStream" ).value += document.getElementById( "Stream" ).value.toLowerCase() + ": " +
                 -Math.log2( this.EventMeasureStream( PrioriP, "Stream" ) ).toFixed( 3 ) + " [bit]\t";
 
             document.getElementById( "Stream" ).value = "";
@@ -106,10 +106,15 @@ class System
         Stream = document.getElementById( TextAreaStream ).value.toLowerCase().match(/\b[\wàèéìòù]+\b/g) || [];
         let Norm = Stream.length;
 
-        for( let Token of Stream )
+        for( let Event of Stream )
         {
-            P[ Token ] = ( P[ Token ] || 0 ) + ( 1 / Norm );
+            P[ Event ] = ( P[ Event ] || 0 ) + ( 1 / Norm );
         } 
+
+        for( let Event in P )
+        {
+            alert( Event + ": " + P[ Event ] );
+        }
         return P;
     }
 
@@ -117,9 +122,9 @@ class System
     {
         let TotP = 1;
         Stream = document.getElementById( TextAreaStream ).value.toLowerCase().match(/\b[\wàèéìòù]+\b/g) || [];
-        for( let Token of Stream )
+        for( let Event of Stream )
         {
-            TotP *= P[ Token ];
+            TotP *= P[ Event ];
         } 
         return TotP;
     }
