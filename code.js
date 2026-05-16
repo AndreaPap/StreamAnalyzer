@@ -80,7 +80,7 @@ class System
     {
         alert( "click" );
         let PrioriP = this.EventStream2P( "PrioriStream" );
-
+        alert( "Priori p" );
         document.getElementById( "OutputSingle" ).value = "";
         for( let Event in PrioriP )
         {
