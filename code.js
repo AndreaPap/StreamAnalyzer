@@ -25,15 +25,6 @@ class System
         Element = document.createElement( "textarea" );
         Element.id = "PrioriStream";
         Element.className = "CellStyle";
-        Element.addEventListener( "keydown", 
-            function(event) {
-                if (event.key === "Enter") 
-                {
-                    event.preventDefault(); // evita newline nella textarea
-                    document.getElementById( "Evaluate" ).click();
-                }
-            }
-        );
         App.append( Element );
 
         Element = document.createElement( "textarea" );
@@ -48,6 +39,16 @@ class System
                 }
             }
         );
+        App.append( Element );
+
+        Element = document.createElement( "span" );
+        Element.className = "HeaderStyle";
+        Element.textContent = "Event info";
+        App.append( Element );
+
+        Element = document.createElement( "span" );
+        Element.className = "HeaderStyle";
+        Element.textContent = "Stream info";
         App.append( Element );
 
         Element = document.createElement( "textarea" );
