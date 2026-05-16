@@ -77,6 +77,7 @@ class System
 
     EventEvaluate()
     {
+        alert( "ciao" );
         let PrioriP = this.EventStream2P( "PrioriStream" );
 
         document.getElementById( "OutputSingle" ).value = "";
@@ -110,11 +111,6 @@ class System
         {
             P[ Event ] = ( P[ Event ] || 0 ) + ( 1 / Norm );
         } 
-
-        for( let Event in P )
-        {
-            alert( Event + ": " + P[ Event ] );
-        }
         return P;
     }
 
