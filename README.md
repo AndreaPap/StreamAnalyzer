@@ -11,4 +11,5 @@ An example of use for evaluate chord's surprise:
 
 <img width="1916" height="937" alt="immagine" src="https://github.com/user-attachments/assets/3c2411c6-fbf9-4298-bd71-28684f190a83" />
 
-In left side complete stream, in right sub stream to evaluate. Press evaluate or Enter in extarea and script will calculate Info. :-)
+
+In left side complete stream, in right sub stream to evaluate. Press evaluate or Enter in textarea and script will calculate Info. :-)
