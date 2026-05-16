@@ -35,7 +35,7 @@ class System
                 if (event.key === "Enter") 
                 {
                     event.preventDefault(); // evita newline nella textarea
-                    document.getElementById( "Evaluate" ).click();
+                    document.getElementById( "EvaluateButton" ).click();
                 }
             }
         );
@@ -62,7 +62,7 @@ class System
         App.append( Element );
 
         Element = document.createElement( "button" );
-        Element.id = "Evaluate";
+        Element.id = "EvaluateButton";
         Element.className = "ButtonStyle";
         Element.textContent = "Evaluate";
         Element.onclick = () => PageSystem.EventEvaluate();
