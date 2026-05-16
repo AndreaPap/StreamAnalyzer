@@ -30,16 +30,16 @@ class System
         Element = document.createElement( "textarea" );
         Element.id = "Stream";
         Element.className = "CellStyle";
-        Element.addEventListener( "keydown", 
+        /*Element.addEventListener( "keydown", 
             ( event ) => 
             {
                 if (event.key === "Enter") 
                 {
                     event.preventDefault(); // evita newline nella textarea
-                    this.EventEvaluate();
+                    document.getElementById( "EvaluateButton")
                 }
             }
-        );
+        );*/
         App.append( Element );
 
         Element = document.createElement( "span" );
