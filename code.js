@@ -78,9 +78,8 @@ class System
 
     EventEvaluate()
     {
-        alert( "click" );
         let PrioriP = this.EventStream2P( "PrioriStream" );
-        alert( "Priori p" );
+        
         document.getElementById( "OutputSingle" ).value = "";
         for( let Event in PrioriP )
         {
@@ -105,7 +104,7 @@ class System
     EventStream2P( TextAreaStream )
     {
         let P = {};
-        Stream = document.getElementById( TextAreaStream ).value.toLowerCase().match(/\b[\wàèéìòù]+\b/g) || [];
+        Stream = document.getElementById( TextAreaStream ).value.toLowerCase().trim().split(/\s+/);
         let Norm = Stream.length;
 
         for( let Event of Stream )
@@ -118,7 +117,7 @@ class System
     EventMeasureStream( P, TextAreaStream )
     {
         let TotP = 1;
-        Stream = document.getElementById( TextAreaStream ).value.toLowerCase().match(/\b[\wàèéìòù]+\b/g) || [];
+        Stream = document.getElementById( TextAreaStream ).value.toLowerCase().trim().split(/\s+/);
         for( let Event of Stream )
         {
             TotP *= P[ Event ];
